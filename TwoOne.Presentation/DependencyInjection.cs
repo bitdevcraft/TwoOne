@@ -2,7 +2,7 @@
 
 namespace TwoOne.Presentation;
 
-internal static class DependencyInjection
+public static class DependencyInjection
 {
     public static IServiceCollection AddPresentationDiServices(this IServiceCollection services)
     {

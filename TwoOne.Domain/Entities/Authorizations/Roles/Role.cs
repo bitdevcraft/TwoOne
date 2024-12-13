@@ -1,16 +1,14 @@
-﻿using TwoOne.Domain.Common;
+﻿using Microsoft.AspNetCore.Identity;
+
+using TwoOne.Domain.Common;
 using TwoOne.Domain.Entities.Users;
 
-namespace TwoOne.Domain.Metadata;
+namespace TwoOne.Domain.Entities.Authorizations.Roles;
 
-public class ObjectMetadata : BaseEntity, IAuditableEntity
+public class Role : IdentityRole, IAuditableEntity
 {
-    public string? Name { get; set; }
-    public string? Description { get; set; }
-
-    public ICollection<ObjectFieldMetadata> Fields { get; set; } = [];
-
-
+    public ICollection<User> Users { get; set; } = [];
+    
     // Auditable
     public DateTime? CreatedAt { get; set; }
     public User? CreatedBy { get; set; }

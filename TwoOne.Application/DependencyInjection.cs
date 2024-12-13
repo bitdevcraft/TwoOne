@@ -2,7 +2,7 @@
 
 namespace TwoOne.Application;
 
-internal static class DependencyInjection
+public static class DependencyInjection
 {
     public static IServiceCollection AddApplicationDiServices(this IServiceCollection services)
     {
