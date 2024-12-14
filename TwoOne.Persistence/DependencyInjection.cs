@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -49,10 +50,18 @@ public static class DependencyInjection
         IConfiguration configuration
     )
     {
+        
+        services.AddSingleton<TimeProvider>(TimeProvider.System);
         services
-            .AddIdentityCore<User>()
+            .AddIdentityCore<User>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = true;
+            })
             .AddRoles<Role>()
-            .AddEntityFrameworkStores<AppDbContext>();
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddSignInManager();
 
         return services;
     }

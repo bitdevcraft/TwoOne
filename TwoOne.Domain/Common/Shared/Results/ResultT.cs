@@ -4,15 +4,15 @@ public class Result<T>
 {
     public bool Success { get; private set; }
 
-    public T Value { get; private set; }
+    public T? Value { get; private set; }
 
     public List<string> Errors { get; private set; }
 
-    protected Result(bool success, T value, List<string>? errors)
+    protected Result(bool success, T? value, List<string>? errors)
     {
         Success = success;
         Value = value;
-        Errors = errors ?? new List<string>();
+        Errors = errors ?? [];
     }
 
     public static Result<T> SuccessResult(T value)
@@ -20,12 +20,12 @@ public class Result<T>
         return new Result<T>(true, value, null);
     }
 
-    public static Result<T?> FailureResult(List<string> errors)
+    public static Result<T> FailureResult(List<string> errors)
     {
-        return new Result<T?>(false, default(T), errors);
+        return new Result<T>(false, default, errors);
     }
 
-    public static Result<T?> FailureResult(string error)
+    public static Result<T> FailureResult(string error)
     {
         return FailureResult([error]);
     }

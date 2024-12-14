@@ -15,8 +15,8 @@ public class User : IdentityUser, IAuditableEntity
     public string? Mobile { get; set; }
     
     // Role
-    public Role Role { get; set; }
-    public string RoleId { get; set; }
+    public Role? Role { get; set; }
+    public string? RoleId { get; set; }
     
     // Auditable
     public DateTime? CreatedAt { get; set; }

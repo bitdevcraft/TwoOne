@@ -1,4 +1,6 @@
-﻿using Scrutor;
+﻿using Microsoft.AspNetCore.Identity;
+
+using Scrutor;
 
 using TwoOne.Application;
 using TwoOne.Infrastructure;
@@ -28,6 +30,13 @@ internal static class DependencyInjection
     private static IServiceCollection AddClassLibDependencyInjectionService(this IServiceCollection services,
         IConfiguration configuration)
     {
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
+            options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
+        })
+            .AddCookie(IdentityConstants.ApplicationScheme);
+
         services
             .AddPersistenceDiServices(configuration)
             .AddApplicationDiServices()
