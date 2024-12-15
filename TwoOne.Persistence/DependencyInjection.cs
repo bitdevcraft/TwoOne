@@ -19,7 +19,6 @@ public static class DependencyInjection
     public static IServiceCollection AddPersistenceDiServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.DatabaseService(configuration);
-        services.AddIdentityService(configuration);
         return services;
     }
 
@@ -36,33 +35,6 @@ public static class DependencyInjection
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
         );
         
-        return services;
-    }
-
-    /// <summary>
-    /// Set up the User and Role
-    /// </summary>
-    /// <param name="services">self</param>
-    /// <param name="configuration"></param>
-    /// <returns></returns>
-    private static IServiceCollection AddIdentityService(
-        this IServiceCollection services,
-        IConfiguration configuration
-    )
-    {
-        
-        services.AddSingleton<TimeProvider>(TimeProvider.System);
-        services
-            .AddIdentityCore<User>(options =>
-            {
-                options.Password.RequireDigit = true;
-                options.Password.RequiredLength = 8;
-                options.Password.RequireNonAlphanumeric = true;
-            })
-            .AddRoles<Role>()
-            .AddEntityFrameworkStores<AppDbContext>()
-            .AddSignInManager();
-
         return services;
     }
 }

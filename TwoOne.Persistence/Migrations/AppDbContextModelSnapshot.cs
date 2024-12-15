@@ -273,7 +273,7 @@ namespace TwoOne.Persistence.Migrations
                         new
                         {
                             Id = "7db8bdb6-8ffe-4f73-903f-fe0424d52e10",
-                            ConcurrencyStamp = "c21b3e00-a978-4190-b2b4-b3a1a1c182fa",
+                            ConcurrencyStamp = "6aca05b0-de07-4b3e-acd6-7a96e13ae6db",
                             IsDeleted = false,
                             Name = "SystemAdministrator",
                             NormalizedName = "SYSTEMADMINISTRATOR"
@@ -281,7 +281,7 @@ namespace TwoOne.Persistence.Migrations
                         new
                         {
                             Id = "530b21d4-4dd9-4749-9444-ee1384d37d38",
-                            ConcurrencyStamp = "ac959942-c360-4e32-96ef-3972dbf6ae2b",
+                            ConcurrencyStamp = "2776cd56-ca4f-4bcc-971b-92971bce9258",
                             IsDeleted = false,
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
@@ -289,11 +289,44 @@ namespace TwoOne.Persistence.Migrations
                         new
                         {
                             Id = "c79c336b-5210-411e-b8c5-f6f210d06204",
-                            ConcurrencyStamp = "fd807087-de76-4407-a0bc-22d11c3e246a",
+                            ConcurrencyStamp = "b104a928-11e5-4673-a8ea-173a62209c96",
                             IsDeleted = false,
                             Name = "User",
                             NormalizedName = "USER"
                         });
+                });
+
+            modelBuilder.Entity("TwoOne.Domain.Entities.Users.RefreshTokens.RefreshToken", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("Expires")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("RevokedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshTokens", "admin");
                 });
 
             modelBuilder.Entity("TwoOne.Domain.Entities.Users.User", b =>
@@ -369,7 +402,6 @@ namespace TwoOne.Persistence.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("RoleId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("SecurityStamp")
@@ -415,7 +447,7 @@ namespace TwoOne.Persistence.Migrations
                         {
                             Id = "e63a9b1c-2f89-406e-a5dc-d6ebe5cdf05a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a00b4322-f6a0-4dda-9698-8269894c96da",
+                            ConcurrencyStamp = "e4eddeb8-cba7-4e9e-b5ca-b317bed0a2b9",
                             Email = "sysadmin@localhost.com",
                             EmailConfirmed = false,
                             IsDeleted = false,
@@ -423,10 +455,10 @@ namespace TwoOne.Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SYSADMIN@LOCALHOST.COM",
                             NormalizedUserName = "SYSADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAED2deqvpWpstZ51blqq0lat3C41AI9KlPY5HZSZI4v2aGJ9nO6QVPeWuGx0jQB0eyQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC9x66xtYPLyPVsyF3TX0fONX9ycYjc/OMuNTqOekDZ2vmMUeFyk4JzupRhrWZoC+w==",
                             PhoneNumberConfirmed = false,
                             RoleId = "7db8bdb6-8ffe-4f73-903f-fe0424d52e10",
-                            SecurityStamp = "45bd56af-7266-427e-8fc7-9628f7a90bbe",
+                            SecurityStamp = "b48992a4-ed08-4462-99b5-c845908cefb5",
                             TwoFactorEnabled = false,
                             UserName = "SysAdmin"
                         },
@@ -434,7 +466,7 @@ namespace TwoOne.Persistence.Migrations
                         {
                             Id = "52f9a82a-e4b6-4f67-ae91-2e173aa21a1a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c977c1f9-0ddf-4682-89ca-729ddd0d33cd",
+                            ConcurrencyStamp = "c8121073-a54b-4fa8-b23f-9c25c05c9d87",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             IsDeleted = false,
@@ -442,10 +474,10 @@ namespace TwoOne.Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "DEMOADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMxQZkQ3rq0EtFLBvsMsyjYQQElcZlSORWEZ8z/Dt2wN/HVD3pOKMtkWpW1ENVPwOQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGMOQjb46SvbsTltRJsv5WP1SQhQjC7w8sZhpdfUd1FfIE1wTiysBcgWTkNhFk0a3Q==",
                             PhoneNumberConfirmed = false,
                             RoleId = "530b21d4-4dd9-4749-9444-ee1384d37d38",
-                            SecurityStamp = "135caa45-2196-4927-8d4e-38044e8b3618",
+                            SecurityStamp = "8ebe16db-d57e-4652-8ca3-fe699c0726de",
                             TwoFactorEnabled = false,
                             UserName = "DemoAdmin"
                         },
@@ -453,7 +485,7 @@ namespace TwoOne.Persistence.Migrations
                         {
                             Id = "a901fdf4-edcb-4b6d-9a65-40df5b062f24",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9250086f-1849-49a8-b758-79f4d3e838e3",
+                            ConcurrencyStamp = "c830a3f6-5160-4f74-810d-acb9429982bc",
                             Email = "user@localhost.com",
                             EmailConfirmed = false,
                             IsDeleted = false,
@@ -461,10 +493,10 @@ namespace TwoOne.Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "DEMOUSER",
-                            PasswordHash = "AQAAAAIAAYagAAAAECr8E/zkwOW5o71jKh8HpGtqTyJ7UwNV/uZw++Y19whbNTune1iiN9IqCFr4XQQxtQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC45scDBuSzlbHl3QOacujHfSLaAXDwxpsSyYqcA83iYlWwxh4kH4zey/RXg0ta/mQ==",
                             PhoneNumberConfirmed = false,
                             RoleId = "c79c336b-5210-411e-b8c5-f6f210d06204",
-                            SecurityStamp = "60a5dba3-2a2e-4555-8ff2-f2d401028823",
+                            SecurityStamp = "378bb452-cdc5-4e90-b5b6-24cbea1d6545",
                             TwoFactorEnabled = false,
                             UserName = "DemoUser"
                         });
@@ -693,6 +725,15 @@ namespace TwoOne.Persistence.Migrations
                     b.Navigation("UpdatedBy");
                 });
 
+            modelBuilder.Entity("TwoOne.Domain.Entities.Users.RefreshTokens.RefreshToken", b =>
+                {
+                    b.HasOne("TwoOne.Domain.Entities.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TwoOne.Domain.Entities.Users.User", b =>
                 {
                     b.HasOne("TwoOne.Domain.Entities.Users.User", "CreatedBy")
@@ -705,9 +746,7 @@ namespace TwoOne.Persistence.Migrations
 
                     b.HasOne("TwoOne.Domain.Entities.Authorizations.Roles.Role", "Role")
                         .WithMany("Users")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoleId");
 
                     b.HasOne("TwoOne.Domain.Entities.Users.User", "UpdatedBy")
                         .WithOne()

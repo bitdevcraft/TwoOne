@@ -15,7 +15,7 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
         builder.HasMany(r => r.Users)
             .WithOne(u => u.Role)
             .HasForeignKey(u => u.RoleId)
-            .IsRequired();
+            .IsRequired(false);
 
         // Auditable
         builder.HasOne(u => u.CreatedBy)
