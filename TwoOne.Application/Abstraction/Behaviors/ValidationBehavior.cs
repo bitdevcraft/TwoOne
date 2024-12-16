@@ -1,29 +1,24 @@
+// Copyright (c) Ryan Capio.
+// All Rights Reserved.
+
 using FluentValidation;
 using FluentValidation.Results;
-
 using MediatR;
-
 using TwoOne.Domain.Common.Shared.Results;
 
 namespace TwoOne.Application.Abstraction.Behaviors;
 
-public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> validators)
+    : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
     where TResponse : Result
 {
-    private readonly IEnumerable<IValidator<TRequest>> _validators;
-
-    public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
-    {
-        _validators = validators;
-    }
-
     public async Task<TResponse> Handle(
         TRequest request,
         RequestHandlerDelegate<TResponse> next,
         CancellationToken cancellationToken)
     {
-        if (!_validators.Any())
+        if (!validators.Any())
         {
             return await next();
         }
@@ -31,10 +26,10 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
         var context = new ValidationContext<TRequest>(request);
 
         ValidationResult[] validationResults = await Task.WhenAll(
-            _validators.Select(v => v.ValidateAsync(context, cancellationToken))
+            validators.Select(v => v.ValidateAsync(context, cancellationToken))
         );
 
-        List<string> failures = validationResults
+        var failures = validationResults
             .SelectMany(result => result.Errors)
             .Where(error => error != null)
             .Select(error => error.ErrorMessage)
@@ -46,7 +41,7 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
         }
 
         // Return a failure result if there are validation errors
-        return BehaviorResult<TResponse>
-            .CreateFailureResult(failures);
+        return BehaviorResult
+            .CreateFailureResult<TResponse>(failures);
     }
 }

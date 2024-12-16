@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-
 using TwoOne.Domain.Common.Repositories;
 using TwoOne.Domain.Common.Shared.Results;
 using TwoOne.Domain.Entities.Users.RefreshTokens;
@@ -24,13 +23,13 @@ public class RefreshTokenRepository(AppDbContext context) : IRefreshTokenReposit
         };
 
         _dbSet.Add(refreshToken);
-        var result = await _context.SaveChangesAsync() > 0;
+        bool result = await _context.SaveChangesAsync() > 0;
 
         if (!result)
         {
             Result<RefreshToken>.FailureResult("Failed to create refresh token");
         }
-        
+
         return Result<RefreshToken>.SuccessResult(refreshToken);
     }
 

@@ -1,10 +1,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-
 using TwoOne.Application.Abstraction.Jwt;
 using TwoOne.Domain.Entities.Users;
 
@@ -37,7 +35,7 @@ public class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
                 )
         };
 
-        var token = tokenHandler.CreateToken(tokenDescriptor);
+        SecurityToken? token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
 }

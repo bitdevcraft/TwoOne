@@ -7,6 +7,6 @@ public class EmailService : IEmailService
 {
     public Task SendEmailAsync(MailRequest request, CancellationToken cancellationToken = default)
     {
-       return Task.CompletedTask;
+        return Task.CompletedTask;
     }
 }

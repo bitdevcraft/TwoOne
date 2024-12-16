@@ -1,9 +1,6 @@
 using MediatR;
-
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
 using TwoOne.Application.UseCase.Authentication.Login;
 using TwoOne.Application.UseCase.Authentication.Refresh;
 using TwoOne.Application.UseCase.Authentication.Register;
@@ -19,7 +16,7 @@ public class AuthController(ISender sender) : ApiController(sender)
     {
         var query = new LoginCommand(request);
         Result<TokenResponse> result = await _sender.Send(query);
-        
+
         SetRefreshToken(result.Value!);
 
         return result.Success ? Ok(result.Value!.Token) : BadRequest(result.Errors);
@@ -43,7 +40,7 @@ public class AuthController(ISender sender) : ApiController(sender)
         {
             return BadRequest();
         }
-        
+
         var query = new RefreshTokenCommand(refreshToken);
         Result<TokenResponse> result = await _sender.Send(query);
 
@@ -51,14 +48,10 @@ public class AuthController(ISender sender) : ApiController(sender)
 
         return result.Success ? Ok(result.Value!.Token) : BadRequest(result.Errors);
     }
-    
+
     private void SetRefreshToken(TokenResponse tokenResponse)
     {
-        var cookieOptions = new CookieOptions
-        {
-            HttpOnly = true,
-            Expires = DateTime.UtcNow.AddDays(7)
-        };
+        var cookieOptions = new CookieOptions { HttpOnly = true, Expires = DateTime.UtcNow.AddDays(7) };
 
         Response.Cookies.Append("token", tokenResponse.RefreshToken!, cookieOptions);
     }

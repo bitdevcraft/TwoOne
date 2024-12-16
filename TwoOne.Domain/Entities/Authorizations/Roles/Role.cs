@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-
 using TwoOne.Domain.Common;
 using TwoOne.Domain.Entities.Users;
 
@@ -8,7 +7,7 @@ namespace TwoOne.Domain.Entities.Authorizations.Roles;
 public class Role : IdentityRole, IAuditableEntity
 {
     public ICollection<User> Users { get; set; } = [];
-    
+
     // Auditable
     public DateTime? CreatedAt { get; set; }
     public User? CreatedBy { get; set; }

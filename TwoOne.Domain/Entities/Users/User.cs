@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-
 using TwoOne.Domain.Common;
 using TwoOne.Domain.Entities.Authorizations.Roles;
 using TwoOne.Domain.Entities.ValueObjects;
@@ -13,11 +12,11 @@ public class User : IdentityUser, IAuditableEntity
     public string? LastName { get; set; }
     public string? Phone { get; set; }
     public string? Mobile { get; set; }
-    
+
     // Role
     public Role? Role { get; set; }
     public string? RoleId { get; set; }
-    
+
     // Auditable
     public DateTime? CreatedAt { get; set; }
     public User? CreatedBy { get; set; }

@@ -1,3 +1,3 @@
 ﻿namespace TwoOne.Domain.Common.Shared.Errors;
 
-public enum ErrorType {  }
+public enum ErrorType { }

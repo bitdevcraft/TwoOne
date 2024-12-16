@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using TwoOne.Domain.Entities.Authorizations.Roles;
-using TwoOne.Domain.Entities.Users;
-
 namespace TwoOne.Persistence;
 
+/// <summary>
+/// 
+/// </summary>
 public static class DependencyInjection
 {
     /// <summary>
@@ -16,7 +15,8 @@ public static class DependencyInjection
     /// <param name="services">self</param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    public static IServiceCollection AddPersistenceDiServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddPersistenceDiServices(this IServiceCollection services,
+        IConfiguration configuration)
     {
         services.DatabaseService(configuration);
         return services;
@@ -34,7 +34,7 @@ public static class DependencyInjection
         services.AddDbContext<AppDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
         );
-        
+
         return services;
     }
 }

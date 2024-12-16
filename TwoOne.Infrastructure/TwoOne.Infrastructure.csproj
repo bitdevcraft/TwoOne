@@ -1,23 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\TwoOne.Application\TwoOne.Application.csproj" />
-    <ProjectReference Include="..\TwoOne.Persistence\TwoOne.Persistence.csproj" />
+    <ProjectReference Include="..\TwoOne.Application\TwoOne.Application.csproj"/>
+    <ProjectReference Include="..\TwoOne.Persistence\TwoOne.Persistence.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1"/>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Caching\" />
+    <Folder Include="Services\Caching\"/>
   </ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <AnalysisMode>Recommended</AnalysisMode>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
   </PropertyGroup>
 
 </Project>

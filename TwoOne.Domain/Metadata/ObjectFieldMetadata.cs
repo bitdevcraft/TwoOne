@@ -3,7 +3,7 @@ using TwoOne.Domain.Entities.Users;
 
 namespace TwoOne.Domain.Metadata;
 
-public class ObjectFieldMetadata : BaseEntity , IAuditableEntity
+public class ObjectFieldMetadata : BaseEntity, IAuditableEntity
 {
     public string? Name { get; set; }
 
@@ -22,7 +22,7 @@ public class ObjectFieldMetadata : BaseEntity , IAuditableEntity
     public ObjectMetadata? ObjectMetadata { get; set; }
 
     public string? ObjectMetadataId { get; set; }
-    
+
     // Auditable
     public DateTime? CreatedAt { get; set; }
     public User? CreatedBy { get; set; }

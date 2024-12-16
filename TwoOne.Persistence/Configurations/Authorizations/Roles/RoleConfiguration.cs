@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 using TwoOne.Domain.Entities.Authorizations.Roles;
 
 namespace TwoOne.Persistence.Configurations.Authorizations.Roles;
@@ -22,12 +21,12 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
             .WithOne()
             .HasForeignKey<Role>(x => x.CreatedById)
             .IsRequired(false);
-        
+
         builder.HasOne(u => u.UpdatedBy)
             .WithOne()
             .HasForeignKey<Role>(x => x.UpdatedById)
             .IsRequired(false);
-        
+
         builder.HasOne(u => u.DeletedBy)
             .WithOne()
             .HasForeignKey<Role>(x => x.DeletedById)

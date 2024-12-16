@@ -14,7 +14,7 @@ public class Address : IEquatable<Address>
         PostalCode = postalCode;
         Country = country;
     }
-    
+
     public override string ToString() => $"{Street}, {City}, {PostalCode}, {Country}";
 
     public bool Equals(Address? other)
@@ -33,6 +33,7 @@ public class Address : IEquatable<Address>
         {
             return Equals(otherAddress);
         }
+
         return false;
     }
 

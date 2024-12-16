@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Identity;
-
 using TwoOne.Application.Abstraction.Jwt;
 using TwoOne.Application.Abstraction.Messaging;
 using TwoOne.Domain.Common.Repositories;
@@ -22,7 +21,7 @@ public class LoginCommandHandler(
 
     public async Task<Result<TokenResponse>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userManager.FindByNameAsync(request.Login.Username);
+        User? user = await _userManager.FindByNameAsync(request.Login.Username);
 
         if (user == null || !await _userManager.CheckPasswordAsync(user, request.Login.Password))
         {

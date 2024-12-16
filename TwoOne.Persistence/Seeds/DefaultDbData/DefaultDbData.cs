@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
 using TwoOne.Domain.Entities.Authorizations.Roles;
 using TwoOne.Domain.Entities.Users;
 
@@ -34,7 +33,7 @@ public static class DefaultDbData
             }
         );
 
-        User sysadmin = new User()
+        var sysadmin = new User()
         {
             Id = "e63a9b1c-2f89-406e-a5dc-d6ebe5cdf05a",
             UserName = "SysAdmin",
@@ -47,7 +46,7 @@ public static class DefaultDbData
             ConcurrencyStamp = Guid.NewGuid().ToString()
         };
 
-        User admin = new User()
+        var admin = new User()
         {
             Id = "52f9a82a-e4b6-4f67-ae91-2e173aa21a1a",
             UserName = "DemoAdmin",
@@ -60,7 +59,7 @@ public static class DefaultDbData
             ConcurrencyStamp = Guid.NewGuid().ToString()
         };
 
-        User user = new User()
+        var user = new User()
         {
             Id = "a901fdf4-edcb-4b6d-9a65-40df5b062f24",
             UserName = "DemoUser",
@@ -73,7 +72,7 @@ public static class DefaultDbData
             ConcurrencyStamp = Guid.NewGuid().ToString()
         };
 
-        PasswordHasher<User> passwordHasher = new PasswordHasher<User>();
+        var passwordHasher = new PasswordHasher<User>();
         sysadmin.PasswordHash = passwordHasher.HashPassword(sysadmin, "Administrator1!");
         admin.PasswordHash = passwordHasher.HashPassword(admin, "Administrator1!");
         user.PasswordHash = passwordHasher.HashPassword(user, "Administrator1!");

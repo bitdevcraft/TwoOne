@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 using TwoOne.Domain.Entities.Authorizations.Permissions;
 
 namespace TwoOne.Persistence.Configurations.Authorizations.Permissions;

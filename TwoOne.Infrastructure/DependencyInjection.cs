@@ -1,10 +1,8 @@
-﻿using System.Text;
+﻿// Copyright (c) Ryan Capio.
+// All Rights Reserved.
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-
 using TwoOne.Infrastructure.Security.Jwt;
 
 namespace TwoOne.Infrastructure;
@@ -26,16 +24,16 @@ public static class DependencyInjection
     {
         services.ConfigureOptions<JwtOptionsSetup>();
         services.ConfigureOptions<JwtBearerOptionsSetup>();
-        
+
         services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
             .AddJwtBearer();
-        
+
         services.AddAuthorization();
-        
+
         return services;
     }
 }

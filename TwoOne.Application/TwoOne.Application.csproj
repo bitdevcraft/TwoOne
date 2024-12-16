@@ -1,25 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\TwoOne.Domain\TwoOne.Domain.csproj" />
+    <ProjectReference Include="..\TwoOne.Domain\TwoOne.Domain.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
-    <PackageReference Include="MediatR" Version="12.4.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Microsoft.AspNetCore.Identity">
-      <HintPath>..\..\..\..\..\..\.nuget\packages\microsoft.aspnetcore.app.ref\8.0.10\ref\net8.0\Microsoft.AspNetCore.Identity.dll</HintPath>
-    </Reference>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0"/>
+    <PackageReference Include="MediatR" Version="12.4.1"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1"/>
   </ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <AnalysisMode>Recommended</AnalysisMode>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
   </PropertyGroup>
 
 </Project>

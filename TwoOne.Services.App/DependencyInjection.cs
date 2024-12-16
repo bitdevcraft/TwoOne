@@ -1,11 +1,4 @@
-﻿using System.Text;
-
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-
-using Scrutor;
-
+﻿using Scrutor;
 using TwoOne.Application;
 using TwoOne.Domain.Entities.Authorizations.Roles;
 using TwoOne.Domain.Entities.Users;
@@ -19,28 +12,24 @@ internal static class DependencyInjection
 {
     public static IServiceCollection AddAppDiServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddIdentityService(configuration);
+        services.AddIdentityService();
 
         services.AddClassLibDependencyInjectionService(configuration);
 
-        services.AddAssemblyService(configuration);
+        services.AddAssemblyService();
 
         return services;
     }
-    
-    
+
     /// <summary>
     /// Set up the User and Role
     /// </summary>
     /// <param name="services">self</param>
-    /// <param name="configuration"></param>
     /// <returns></returns>
     private static IServiceCollection AddIdentityService(
-        this IServiceCollection services,
-        IConfiguration configuration
+        this IServiceCollection services
     )
     {
-        
         services.AddSingleton<TimeProvider>(TimeProvider.System);
         services
             .AddIdentityCore<User>(options =>
@@ -72,15 +61,12 @@ internal static class DependencyInjection
         return services;
     }
 
-
     /// <summary>
     /// Adding the Assembly References of the Class Libraries
     /// </summary>
     /// <param name="services"></param>
-    /// <param name="configuration"></param>
     /// <returns></returns>
-    private static IServiceCollection AddAssemblyService(this IServiceCollection services,
-        IConfiguration configuration)
+    private static IServiceCollection AddAssemblyService(this IServiceCollection services)
     {
         services.Scan(selector =>
             selector

@@ -5,7 +5,7 @@ using TwoOne.Domain.Metadata;
 
 namespace TwoOne.Domain.Entities.Authorizations.Permissions;
 
-public class Permission : BaseEntity , IAuditableEntity
+public class Permission : BaseEntity, IAuditableEntity
 {
     public Role? Role { get; set; }
     public string? RoleId { get; set; }
@@ -23,7 +23,7 @@ public class Permission : BaseEntity , IAuditableEntity
     public bool CanRead { get; set; }
     public bool CanEdit { get; set; }
     public bool CanDelete { get; set; }
-    
+
     // Auditable
 
     public DateTime? CreatedAt { get; set; }

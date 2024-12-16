@@ -12,7 +12,7 @@ public class Name : IEquatable<Name>
         LastName = lastName;
         MiddleName = middleName;
     }
-    
+
     public override string ToString() => $"{FirstName} {LastName}";
 
     public bool Equals(Name? other)
@@ -31,6 +31,7 @@ public class Name : IEquatable<Name>
         {
             return Equals(otherName);
         }
+
         return false;
     }
 

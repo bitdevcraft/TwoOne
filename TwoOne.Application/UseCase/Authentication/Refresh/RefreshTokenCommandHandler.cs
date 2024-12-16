@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Identity;
-
 using TwoOne.Application.Abstraction.Jwt;
 using TwoOne.Application.Abstraction.Messaging;
 using TwoOne.Application.UseCase.Authentication.Login;
 using TwoOne.Domain.Common.Repositories;
 using TwoOne.Domain.Common.Shared.Results;
 using TwoOne.Domain.Entities.Users;
+using TwoOne.Domain.Entities.Users.RefreshTokens;
 
 namespace TwoOne.Application.UseCase.Authentication.Refresh;
 
@@ -21,7 +21,7 @@ public class RefreshTokenCommandHandler(
 
     public async Task<Result<TokenResponse>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
     {
-        var token = await _refreshTokenRepository.GetTokenAsync(request.RefreshToken);
+        RefreshToken? token = await _refreshTokenRepository.GetTokenAsync(request.RefreshToken);
 
         if (token == null || token.Expires < DateTime.UtcNow || token.IsUsed || token.IsRevoked)
         {
@@ -32,15 +32,15 @@ public class RefreshTokenCommandHandler(
         await _refreshTokenRepository.MarkTokenAsUsedAsync(token);
 
         // Generate new tokens
-        var user = await _userManager.FindByIdAsync(token.UserId!);
+        User? user = await _userManager.FindByIdAsync(token.UserId!);
 
         if (user == null)
         {
             return Result<TokenResponse>.FailureResult("Invalid or expired refresh token");
         }
-        
-        var jwtToken = _jwtProvider.GenerateToken(user);
-        var newRefreshToken = await _refreshTokenRepository.CreateTokenAsync(user.Id);
+
+        string jwtToken = _jwtProvider.GenerateToken(user);
+        Result<RefreshToken> newRefreshToken = await _refreshTokenRepository.CreateTokenAsync(user.Id);
 
         return Result<TokenResponse>
             .SuccessResult(new TokenResponse(
