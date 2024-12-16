@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TwoOne.Persistence;
@@ -11,9 +12,11 @@ using TwoOne.Persistence;
 namespace TwoOne.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241216105132_AddAuditable")]
+    partial class AddAuditable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,7 +110,7 @@ namespace TwoOne.Persistence.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles", "admin");
+                    b.ToTable("AspNetUserRoles", "app");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -322,7 +325,7 @@ namespace TwoOne.Persistence.Migrations
                         new
                         {
                             Id = "7db8bdb6-8ffe-4f73-903f-fe0424d52e10",
-                            ConcurrencyStamp = "d7c44bbd-0de6-44bb-b6db-72b9cf518e97",
+                            ConcurrencyStamp = "a5d00a4a-b72e-4211-8098-dcac05b0bd4c",
                             IsDeleted = false,
                             Name = "SystemAdministrator",
                             NormalizedName = "SYSTEMADMINISTRATOR"
@@ -330,7 +333,7 @@ namespace TwoOne.Persistence.Migrations
                         new
                         {
                             Id = "530b21d4-4dd9-4749-9444-ee1384d37d38",
-                            ConcurrencyStamp = "e21423d9-7306-43cd-a20b-19e76b0652bc",
+                            ConcurrencyStamp = "a13f3674-ced6-4170-9c50-932042c95c20",
                             IsDeleted = false,
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
@@ -338,7 +341,7 @@ namespace TwoOne.Persistence.Migrations
                         new
                         {
                             Id = "c79c336b-5210-411e-b8c5-f6f210d06204",
-                            ConcurrencyStamp = "3b76cca3-58e3-460f-823d-f24aeb7768a3",
+                            ConcurrencyStamp = "ae4f6b31-2dfb-414e-921b-ba0bd7b3c0e9",
                             IsDeleted = false,
                             Name = "User",
                             NormalizedName = "USER"
@@ -497,7 +500,7 @@ namespace TwoOne.Persistence.Migrations
                         {
                             Id = "e63a9b1c-2f89-406e-a5dc-d6ebe5cdf05a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d49e8973-4f21-4986-bf57-44a1aa9a834e",
+                            ConcurrencyStamp = "6cbc178c-fc8f-4bf5-804d-f53d0ecc08e8",
                             Email = "sysadmin@localhost.com",
                             EmailConfirmed = false,
                             IsDeleted = false,
@@ -505,10 +508,10 @@ namespace TwoOne.Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SYSADMIN@LOCALHOST.COM",
                             NormalizedUserName = "SYSADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM1mD+4HXJsWygaeWg8YFgkXTWHJNeByKMpv23H9gxX3mMR4SUJkpacYmJuPNU8V3w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBKACsKm3AX6dpFSreTG787HyFUB7JG52sfWOk4iVqkHXs+BYXkq9xeRaRZtt1ULzw==",
                             PhoneNumberConfirmed = false,
                             RoleId = "7db8bdb6-8ffe-4f73-903f-fe0424d52e10",
-                            SecurityStamp = "03c4f97f-14dd-4b52-947b-3d8cf14c07a3",
+                            SecurityStamp = "4597baac-a47d-49c9-a236-74aa96817989",
                             TwoFactorEnabled = false,
                             UserName = "SysAdmin"
                         },
@@ -516,7 +519,7 @@ namespace TwoOne.Persistence.Migrations
                         {
                             Id = "52f9a82a-e4b6-4f67-ae91-2e173aa21a1a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e7ab75e6-6739-4a6b-83cc-d051c98311ec",
+                            ConcurrencyStamp = "4c03f2a5-291a-49ae-8af1-0c256374a325",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             IsDeleted = false,
@@ -524,10 +527,10 @@ namespace TwoOne.Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "DEMOADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGDbWtSRHcPaBG+tFuEl0OSJWa0uYL/SpCKGUjeYnkb//b+v66mOvH/6LSHQgMyPRw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKdtKuFrgIu61Jnxy2w4sZZzsxQq/p0ldbQNVvvujXGzK+Slk02ZMwv67ZdA1YiTSQ==",
                             PhoneNumberConfirmed = false,
                             RoleId = "530b21d4-4dd9-4749-9444-ee1384d37d38",
-                            SecurityStamp = "ccd990a2-48b5-4f84-90a5-12798f993153",
+                            SecurityStamp = "7f069c5b-5de4-4167-8a0c-48c3dfaf7c63",
                             TwoFactorEnabled = false,
                             UserName = "DemoAdmin"
                         },
@@ -535,7 +538,7 @@ namespace TwoOne.Persistence.Migrations
                         {
                             Id = "a901fdf4-edcb-4b6d-9a65-40df5b062f24",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "50db3cc5-8fd5-4af0-b761-7d1386fdf2ff",
+                            ConcurrencyStamp = "044ad136-1682-4a03-994e-71250a73dd30",
                             Email = "user@localhost.com",
                             EmailConfirmed = false,
                             IsDeleted = false,
@@ -543,10 +546,10 @@ namespace TwoOne.Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "DEMOUSER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGcMNQf4L8FVZbuKL/L6e2AM4KgtcVohCC4ZYTVovnKTf6hL8Gbgde9rcYVYgJHyuQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPZ1yZkiPE2RveHNPZmDbYi32VWbFIKt9O8hoKsBMnVhjAbBmtWTYTKYWU6ec2jKcA==",
                             PhoneNumberConfirmed = false,
                             RoleId = "c79c336b-5210-411e-b8c5-f6f210d06204",
-                            SecurityStamp = "b895c013-ac68-4608-92cf-0d8a4b39ca26",
+                            SecurityStamp = "3e020684-17e3-4db2-803f-234c8341537a",
                             TwoFactorEnabled = false,
                             UserName = "DemoUser"
                         });
@@ -612,7 +615,7 @@ namespace TwoOne.Persistence.Migrations
 
                     b.HasIndex("UpdatedById");
 
-                    b.ToTable("ObjectFieldMetadata", "metadata");
+                    b.ToTable("ObjectFieldMetadata", "app");
                 });
 
             modelBuilder.Entity("TwoOne.Domain.Metadata.ObjectMetadata", b =>
@@ -655,7 +658,7 @@ namespace TwoOne.Persistence.Migrations
 
                     b.HasIndex("UpdatedById");
 
-                    b.ToTable("ObjectMetadata", "metadata");
+                    b.ToTable("ObjectMetadata", "app");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

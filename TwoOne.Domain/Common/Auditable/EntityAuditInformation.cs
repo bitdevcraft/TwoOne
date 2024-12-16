@@ -1,0 +1,26 @@
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace TwoOne.Domain.Common.Auditable;
+
+public class EntityAuditInformation
+{
+    public required dynamic Entity { get; set; }
+    public required string TableName { get; set; }
+
+    public EntityState State { get; set; }
+
+    public ICollection<AuditEntry> Changes { get; set; } = [];
+
+    public bool IsDeleteChanged { get; set; }
+
+    public string OperationType =>
+        State switch
+        {
+            EntityState.Added => "Create",
+            EntityState.Modified => "Update",
+            EntityState.Detached => "Detach",
+            EntityState.Unchanged => "",
+            EntityState.Deleted => "Delete",
+            _ => string.Empty,
+        };
+}
